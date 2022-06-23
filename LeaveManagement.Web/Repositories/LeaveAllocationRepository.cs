@@ -93,9 +93,18 @@ namespace LeaveManagement.Web.Repositories
 
         }
 
-        Task<EmployeeAllocationVM> ILeaveAllocationRepository.GetEmployeeAllocation(int id)
+        public async Task<bool> UpdateEmployeeAllocation(LeaveAllocationEditVM model)
         {
-            throw new NotImplementedException();
+            var leaveAllocation = await GetAsync(model.Id);
+            if (leaveAllocation == null)
+            {
+                return false;
+            }
+            leaveAllocation.Period = model.Period;
+            leaveAllocation.NumberOfDays = model.NumberOfDays;
+            await UpdateAsync(leaveAllocation);
+
+            return true;
         }
     }
 }

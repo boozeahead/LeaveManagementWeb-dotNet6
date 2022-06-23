@@ -15,6 +15,6 @@ namespace LeaveManagement.Web.Models
         [Required]
         [DisplayAttribute(Name = "Peroid")]
         public int Period { get; set; }
-        public LeaveTypeVM LeaveType { get; set; }
+        public LeaveTypeVM? LeaveType { get; set; }
     }
 }
